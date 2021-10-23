@@ -1,0 +1,157 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Resources": {
+    "ServerlessDeploymentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ServerlessDeploymentBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ServerlessDeploymentBucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      },
+                      "/*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      }
+                    ]
+                  ]
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ThumbnailLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/thumbnail-handler-dev-thumbnail"
+      }
+    },
+    "ThumbnailLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/thumbnail-handler/dev/1634958946302-2021-10-23T03:15:46.302Z/thumbnail-handler.zip"
+        },
+        "Handler": "handler.thumbnail",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "thumbnail-handler-dev-thumbnail",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": "arn:aws:iam::593072015542:role/lambda-sqs-s3"
+      },
+      "DependsOn": [
+        "ThumbnailLogGroup"
+      ]
+    },
+    "ThumbnailLambdaVersionRu5GFjWuUHqDd3yZMC1rBazwEF27Septgqcufa6oZ2I": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ThumbnailLambdaFunction"
+        },
+        "CodeSha256": "rJq2gVjeTKlmCYAGheTzpWhoSpqBQud3+1PWRRSH9R4="
+      }
+    },
+    "ThumbnailSnsSubscriptionS3nanoservicesimagensputtop": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "TopicArn": "arn:aws:sns:us-east-1:593072015542:s3-nanoservices-imagens-put-top",
+        "Protocol": "lambda",
+        "Endpoint": {
+          "Fn::GetAtt": [
+            "ThumbnailLambdaFunction",
+            "Arn"
+          ]
+        }
+      }
+    },
+    "ThumbnailLambdaPermissionS3nanoservicesimagensputtopSNS": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ThumbnailLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "sns.amazonaws.com",
+        "SourceArn": "arn:aws:sns:us-east-1:593072015542:s3-nanoservices-imagens-put-top"
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": {
+        "Ref": "ServerlessDeploymentBucket"
+      },
+      "Export": {
+        "Name": "sls-thumbnail-handler-dev-ServerlessDeploymentBucketName"
+      }
+    },
+    "ThumbnailLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ThumbnailLambdaVersionRu5GFjWuUHqDd3yZMC1rBazwEF27Septgqcufa6oZ2I"
+      },
+      "Export": {
+        "Name": "sls-thumbnail-handler-dev-ThumbnailLambdaFunctionQualifiedArn"
+      }
+    }
+  }
+}
