@@ -97,7 +97,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/http-handler/dev/1634953368743-2021-10-23T01:42:48.743Z/http-handler.zip"
+                "S3Key": "serverless/http-handler/dev/1635047202452-2021-10-24T03:46:42.452Z/http-handler.zip"
               },
               "Handler": "handler.upload",
               "Runtime": "nodejs12.x",
@@ -110,14 +110,14 @@
               "UploadLogGroup"
             ]
           },
-          "UploadLambdaVersionc4mDsO101Mp8Ix9CeCrW5JYcua7An8G8ViLft5cOhM": {
+          "UploadLambdaVersion3oKauA6GqV4TBA6psqIfUyNkJq2qnErw7RvVPkY6fI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UploadLambdaFunction"
               },
-              "CodeSha256": "hHOqjcTpg9TpuaHGslC8i1ClsNcO0Bf+xBfXI48yLGU="
+              "CodeSha256": "8ULl+o4Hy07T8t/FfyKVKrx0c8f0/MQHgKNlWwSoW4k="
             }
           },
           "ApiGatewayRestApi": {
@@ -193,7 +193,7 @@
               "UploadLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1634953359840": {
+          "ApiGatewayDeployment1635047194287": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -255,7 +255,7 @@
           "UploadLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UploadLambdaVersionc4mDsO101Mp8Ix9CeCrW5JYcua7An8G8ViLft5cOhM"
+              "Ref": "UploadLambdaVersion3oKauA6GqV4TBA6psqIfUyNkJq2qnErw7RvVPkY6fI"
             },
             "Export": {
               "Name": "sls-http-handler-dev-UploadLambdaFunctionQualifiedArn"
@@ -404,7 +404,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UploadLambdaVersionc4mDsO101Mp8Ix9CeCrW5JYcua7An8G8ViLft5cOhM"
+        "versionLogicalId": "UploadLambdaVersion3oKauA6GqV4TBA6psqIfUyNkJq2qnErw7RvVPkY6fI"
       }
     },
     "configValidationMode": "warn",
@@ -432,7 +432,7 @@
     "artifact": "C:\\projetos\\cursos\\nanoservicos\\http-handler\\.serverless\\http-handler.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/http-handler/dev/1634953368743-2021-10-23T01:42:48.743Z",
+    "artifactDirectoryName": "serverless/http-handler/dev/1635047202452-2021-10-24T03:46:42.452Z",
     "artifact": "http-handler.zip"
   }
 }

@@ -1,15 +1,16 @@
 {
   "name": "nanoservicos",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "aws-sdk": "^2.1013.0",
     "serverless-apigw-binary": "^0.4.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }

@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/node_modules/.bin/serverless",
+            "program": "${workspaceFolder}/http-handler/node_modules/.bin/serverless",
             "args": [
                 "offline",
                 "start"

@@ -8,8 +8,8 @@ const BUCKET = 'nanoservices-imagens-thumbnail-2021';
 const s3 = new AWS.S3();
 
 //PEGA A IMAGEM DO S3
-const getObject = (bucket, key) =>{
-    const signedUrlExpireSeconds = 60 * 5
+const getObjectSignedUrl = (bucket, key) =>{
+    const signedUrlExpireSeconds = 999999 * 5
 
     const url = s3.getSignedUrl('getObject', {
         Bucket: bucket,
@@ -39,6 +39,6 @@ const putObject = (buffer, filename) => {
 }
 
 module.exports = {
-    getObject: getObject,
+    getObjectSignedUrl: getObjectSignedUrl,
     putObject: putObject
 }

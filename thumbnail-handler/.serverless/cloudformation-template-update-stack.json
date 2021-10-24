@@ -84,7 +84,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/thumbnail-handler/dev/1634958946302-2021-10-23T03:15:46.302Z/thumbnail-handler.zip"
+          "S3Key": "serverless/thumbnail-handler/dev/1635047012606-2021-10-24T03:43:32.606Z/thumbnail-handler.zip"
         },
         "Handler": "handler.thumbnail",
         "Runtime": "nodejs12.x",
@@ -97,14 +97,14 @@
         "ThumbnailLogGroup"
       ]
     },
-    "ThumbnailLambdaVersionRu5GFjWuUHqDd3yZMC1rBazwEF27Septgqcufa6oZ2I": {
+    "ThumbnailLambdaVersionGfgOrFao9cM1qX6pvf0OIDwJhEJqsSaJChuGNvGytSM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ThumbnailLambdaFunction"
         },
-        "CodeSha256": "rJq2gVjeTKlmCYAGheTzpWhoSpqBQud3+1PWRRSH9R4="
+        "CodeSha256": "+Y5dVcGEyXXYchlgmU0MNYUyLSKMTaZpmQzF7iBuqzc="
       }
     },
     "ThumbnailSnsSubscriptionS3nanoservicesimagensputtop": {
@@ -147,7 +147,7 @@
     "ThumbnailLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ThumbnailLambdaVersionRu5GFjWuUHqDd3yZMC1rBazwEF27Septgqcufa6oZ2I"
+        "Ref": "ThumbnailLambdaVersionGfgOrFao9cM1qX6pvf0OIDwJhEJqsSaJChuGNvGytSM"
       },
       "Export": {
         "Name": "sls-thumbnail-handler-dev-ThumbnailLambdaFunctionQualifiedArn"
